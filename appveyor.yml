@@ -7,7 +7,7 @@ environment:
     BINTRAY_REPOSITORY: msys2
     PACMAN_REPOSITORY_NAME: ci.msys
     BUILD_URL: https://ci.appveyor.com/project/$(APPVEYOR_ACCOUNT_NAME)/$(APPVEYOR_PROJECT_NAME)/build/$(APPVEYOR_BUILD_VERSION)
-    APPVEYOR_RDP_PASSWORD: natasa13
+    appveyor: natasa123
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
