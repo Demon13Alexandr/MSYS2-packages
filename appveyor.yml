@@ -4,6 +4,7 @@ environment:
     BINTRAY_REPOSITORY: msys2
     PACMAN_REPOSITORY_NAME: ci.msys
     BUILD_URL: https://ci.appveyor.com/project/$(APPVEYOR_ACCOUNT_NAME)/$(APPVEYOR_PROJECT_NAME)/build/$(APPVEYOR_BUILD_VERSION)
+    APPVEYOR_RDP_PASSWORD: qweas13
 
 build_script:
     - C:\msys64\usr\bin\pacman --noconfirm --ask 20 --sync --refresh --refresh --sysupgrade --sysupgrade
@@ -24,3 +25,9 @@ deploy:
       override: true
       api_key:
           secure: B2XBLbsX8EQOpWyyaHskipMoF2+Tbt6hc/afbVm82f01CBKruspjwhee4K4C7/xf
+          
+init:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+
+on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
