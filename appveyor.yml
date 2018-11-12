@@ -10,7 +10,8 @@ build_script:
     - C:\msys64\usr\bin\bash --login -c "$(cygpath ${APPVEYOR_BUILD_FOLDER})/ci-build.sh"
 
 artifacts:
-    - path: artifacts\*
+    - path: $(BUILD)\*
+    
 
 deploy:
     - provider: BinTray
